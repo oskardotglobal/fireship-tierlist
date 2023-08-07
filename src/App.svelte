@@ -14,6 +14,8 @@
         <br />
         <br />
         Data is collected from an auto-generated google sheet. Built with Svelte & Deno Deploy.
+        <br />
+        The data is re-fetched on page load.
     </p>
     
     <hr />

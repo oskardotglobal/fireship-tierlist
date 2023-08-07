@@ -48,17 +48,18 @@ export async function fetch_data() {
                     scores.push(scoresMap[val[i]]); 
                 }
 
-                console.log(scores) 
                 const avg = scores.filter(s => !!s).reduce((x, y) => x + y, 0) / scores.length;
                 // @ts-ignore I don't care
                 const score = scoresMapReverse[Math.floor(avg)];
                 // @ts-ignore see above
                 
-                console.log(score, lang, avg);
-                data[score].push([lang, avg]);
-                
+                data[score].push([lang, avg]);                
             }
         });
+
+    for (const tier of Object.keys(data)) {
+        data[tier].sort((a, b) => a[1] - b[1]);
+    }
     
     return data;
 }
