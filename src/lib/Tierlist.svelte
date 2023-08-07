@@ -21,15 +21,57 @@
 {:then data}
 
     <table>
+        <thead>
+            <tr>
+                <th scope="col" class="col-1 text-center">Tier</th>
+                <th scope="col" class="col-1 text-center">Languages</th> 
+            </tr>
+        </thead>
+
+        <tbody>
         {#each tiers as tier}
+            {#if data[tier].length > 8}
+                {#each data[tier].reduce((a, _, i) => (i % 8 === 0 ? a.concat([data[tier].slice(i, i + 8)]) : a), []) as langs, i}   
+                    <tr> 
+                        {#if i === 0}
+                            <th class={`text-center align-middle tlm-bgcolor-${tier.toLowerCase()}`}>{tier}</th>
+                        {:else}
+                            <th class={`text-center align-middle tlm-bgcolor-${tier.toLowerCase()}`}></th>
+                        {/if}
+
+                        {#each langs as lang}
+                            <td>
+                                <p>{lang[0]} <br/> ({lang[1].toFixed(3)})</p>
+                            </td>
+                        {/each}
+                    </tr>
+                {/each} 
+            {:else}
+                
             <tr> 
-                <th>{tier}</th>
+                <th class={`text-center align-middle tlm-bgcolor-${tier.toLowerCase()}`}>{tier}</th>
 
                 {#each data[tier] as lang}
-                    <td>{lang[0]}</td>
+                    <td>
+                        <p>{lang[0]} <br/> ({lang[1].toFixed(3)})</p>
+                    </td>
                 {/each}
             </tr>
+
+            {/if}
         {/each}
+        </tbody>
     </table>
 
 {/await}
+
+<style>
+tr {
+  height: 6em;
+}
+
+th, td {
+  height: 6em;
+  width: 6em;
+}
+</style>
