@@ -43,18 +43,20 @@ export async function fetch_data() {
             for (let i = 0; i < raw_data[0].length; i++) {
                 const lang = raw_data[0][i];
                 const scores: number[] = [];
-
-                raw_data.forEach((val, i, _) => {
-                    // @ts-ignore Implicit any if dynamically grabbing
-                    //            a property of an object 
+  
+                for (const val of raw_data) {
                     scores.push(scoresMap[val[i]]); 
-                });
-                
-                const avg = scores.reduce((x, y) => x + y, 0) / scores.length;
+                }
+
+                console.log(scores) 
+                const avg = scores.filter(s => !!s).reduce((x, y) => x + y, 0) / scores.length;
                 // @ts-ignore I don't care
                 const score = scoresMapReverse[Math.floor(avg)];
                 // @ts-ignore see above
+                
+                console.log(score, lang, avg);
                 data[score].push([lang, avg]);
+                
             }
         });
     
