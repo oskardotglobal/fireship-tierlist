@@ -12,6 +12,12 @@ const scoresMap = {
     "F": 7
 };
 
+const frauds = [
+    "08/08/2023 13:03:42",
+    "08/08/2023 13:05:19",
+    "08/08/2023 13:06:21"
+];
+
 // @ts-ignore a
 function flipObject(obj) {
     return Object.keys(obj).reduce((ret, key) => {
@@ -38,7 +44,9 @@ export async function fetch_data() {
         .then(res => res.text())
         .then(text => {
             let raw_data: string[][] = text.split("\n").map(l => l.split(",").map(c => c.replaceAll('"', '')));
-            raw_data = raw_data.map(r => r.slice(1)) 
+            
+            raw_data = raw_data.filter(r => !frauds.includes(r[0]));
+            raw_data = raw_data.map(r => r.slice(1));
 
             for (let i = 0; i < raw_data[0].length; i++) {
                 const lang = raw_data[0][i];
