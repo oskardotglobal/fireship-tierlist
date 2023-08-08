@@ -50,7 +50,7 @@ export async function fetch_data() {
 
                 const avg = scores.filter(s => !!s).reduce((x, y) => x + y, 0) / scores.length;
                 // @ts-ignore I don't care
-                const score = scoresMapReverse[Math.floor(avg)];
+                const score = scoresMapReverse[(Math.floor(avg * 10) / 10 - Math.floor(avg)) <= 0.5 ? Math.floor(avg) : Math.ceil(avg)];
                 // @ts-ignore see above
                 
                 data[score].push([lang, avg]);                
