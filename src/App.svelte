@@ -7,7 +7,7 @@
     <h1>The definitive programming <br /> language tier list</h1>
   
     <p>
-        .. as curated by the Fireship discord server.
+        .. as curated by the Fireship community.
         <br />
         <br />
         <button><a href="https://forms.gle/biQj3eAVs7sZHpVv5">Fill out the form now</a></button>
