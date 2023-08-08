@@ -30,8 +30,8 @@
 
         <tbody>
         {#each tiers as tier}
-            {#if data[tier].length > 8}
-                {#each data[tier].reduce((a, _, i) => (i % 8 === 0 ? a.concat([data[tier].slice(i, i + 8)]) : a), []) as langs, i}   
+            {#if data[tier].length > (window.innerWidth > 800 ? 8 : 4)}
+                {#each data[tier].reduce((a, _, i) => (i % (window.innerWidth > 800 ? 8 : 4) === 0 ? a.concat([data[tier].slice(i, i + (window.innerWidth > 800 ? 8 : 4))]) : a), []) as langs, i}   
                     <tr> 
                         {#if i === 0}
                             <th class={`text-center align-middle tlm-bgcolor-${tier.toLowerCase()}`}>{tier}</th>
@@ -66,6 +66,7 @@
 {/await}
 
 <style>
+
 tr {
   height: 6em;
 }
@@ -73,5 +74,20 @@ tr {
 th, td {
   height: 6em;
   width: 6em;
+}
+
+table {
+  min-width: unset;
+}
+
+@media screen and (max-width: 800px) {
+  tr {
+    height: 2em;
+  }
+
+  th, td {
+    height: 2em;
+    width: 2em;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts"> 
-  import Tierlist from './lib/Tierlist.svelte'
+  import Tierlist from "./lib/Tierlist.svelte";
 </script>
 
 <main>
@@ -25,8 +25,15 @@
     </div>
 </main>
 
+<hr />
+
 <footer>
-    <p>Some styles yoinked from https://github.com/SuperFola/TierListMaker</p>
+    <p>
+        (C) 2023 Oskar Manhart &lt;oskardotglobal&gt;
+        <br />
+        <a href="https://github.com/oskardotglobal/fireship-tierlist">Source code</a>
+    </p>
+    <p>NOT AFFILIATED WITH FIRESHIP LLC IN ANY WAY</p>
 </footer>
 
 <style>
